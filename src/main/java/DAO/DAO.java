@@ -10,16 +10,19 @@ public class DAO extends DBConnection {
 	public DTO getDTO(String userid, String userpass) {
 		DTO dto = new DTO();
 		try {
-			String sql = "SELECT * FROM Customer WHERE id ='"; 
-			sql += userid + "' AND userpass = '";
-			sql += userpass + "';";
-			stmt = conn.createStatement();
+			String sql = "SELECT * FROM Customer WHERE userid =? AND userpass=?"; 
 			
-			stmt.executeQuery(sql);
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, userid);
+			pstmt.setString(2, userpass);
+			
+			rs = pstmt.executeQuery();
 			
 			if (rs.next()) {
 				dto.setId(rs.getString(1));
 				dto.setPass(rs.getString(2));
+				dto.setSyslev(rs.getInt(3));
 			}
 		}
 		catch(Exception e) {

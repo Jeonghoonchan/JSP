@@ -14,6 +14,7 @@ section {
 margin : 0 auto;
 width: 400px; height: 300px;
 border: 1px solid black;
+text-align:center;
 }
 </style>
 </head>
@@ -24,7 +25,7 @@ border: 1px solid black;
 	%>
 	<h3><%=session.getAttribute("id") %>님 환영합니다.</h3>
 	<% 
-	if (systemlev > 0) {
+	if (systemlev >= 1) {
 	%>
 	<a href="order.jsp">도서 쇼핑하기</a>
 	<%
@@ -33,6 +34,7 @@ border: 1px solid black;
 	%>
 	<a href="list.jsp">공지사항 보기</a>
 <%} }%>
+<a href="logout.jsp">로그아웃</a>
 </section>
 </body>
 </html>

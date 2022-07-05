@@ -5,7 +5,7 @@ import java.sql.*;
 public class DBConnection {
 	
 	public Connection conn = null;
-	public Statement stmt = null;
+	public PreparedStatement pstmt = null;
 	public ResultSet rs = null;
 	
 	public DBConnection(String driver, String url, String id, String pass) {
@@ -25,7 +25,7 @@ public class DBConnection {
 	public void close() {
 		try {
 			if(rs != null) rs.close();
-			if(stmt != null) stmt.close();
+			if(pstmt != null) pstmt.close();
 			if(conn != null) conn.close();
 		}
 		catch(Exception e) {
